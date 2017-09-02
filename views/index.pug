@@ -3,11 +3,40 @@ extends layout
 block content
 
   div.row
+
     div.col-sm-6
       h2 Users
       div#userForm.well
         div.form-group
-          label Name
-          input.form-control(name='name')
+          //- label Name
+          input.form-control(name='name' placeholder='Enter a name...')
         div.form-group
-          button.btn.btn-primary Save
+          button.btn.btn-primary.btn-sm Save User
+
+    div.col-sm-6
+      h2 Offices
+      div#officeForm.well
+        div.form-group
+          //- label Name
+          input.form-control(name='name' placeholder='Enter a location...' autocomplete='off')
+
+  div.row
+
+    div.col-sm-6
+      div.well.well-sm #[h3 User List]
+      div#usersList
+        ul.list-group
+          each user in users
+            li.list-group-item #[h4 #{ user.name }]
+              select.form-control
+                option(value='0' selected='true') -- nothing --
+                option(value='1') Test
+              div.form-group
+                button.btn.btn-warning.btn-sm Remove User
+
+    div.col-sm-6
+      div.well.well-sm #[h3 Office List]
+      div#officesList
+        ul.list-group
+          each office in offices
+            li.list-group-item #[h4 #{ office.address }]

@@ -54,6 +54,10 @@ ul.list-group {
   font-weight: 300;
 }
 
+#usersList div.form-group {
+  margin-top: 10px;
+ }
+
 /*#f0ffff Azure*/
 /*#f8f8ff GhostWhite*/
 /*#f5f5f5 WhiteSmoke*/

@@ -22,10 +22,23 @@ app.set('views', './views'); // set 'views' to specify the templates dir
 app.set('view engine', 'pug'); // set 'view engine' to specify pug
 // app.disable('view cache'); // disable view caching...
 
+// set locals
+app.use( (req, res, next) => {
+  return Promise.all([
+    User.findAll(),
+    Office.findAll(),
+  ])
+    .then(([ users, offices ]) => {
+      res.locals.users = users;
+      res.locals.offices = offices;
+      next();
+    })
+    .catch(next);
+});
+
 // handle the root route
 app.get('/', (req, res, next) => {
-  // get the viewModel...
-  res.send('Hello!');
+  res.render('index');
 });
 
 // handle routes
