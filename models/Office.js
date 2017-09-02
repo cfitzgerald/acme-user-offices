@@ -3,7 +3,13 @@ const Sequelize = db.Sequelize;
 
 const Office = db.define('office', {
   address: {
-    type: Sequelize.STRING, // for initial setup
+    type: Sequelize.STRING,
+  },
+  lat: {
+    type: Sequelize.FLOAT,
+  },
+  long: {
+    type: Sequelize.FLOAT,
   },
 });
 

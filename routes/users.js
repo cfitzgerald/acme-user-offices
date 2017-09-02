@@ -20,5 +20,8 @@ router.put('/:id', (req, res, next) => {
 
 // POST /users
 router.post('/', (req, res, next) => {
-
+  // console.log('POST /users req.body = ', req.body);
+  // return User.create(req.body)
+  //   .then(redirect(res))
+  //   .catch(next);
 });

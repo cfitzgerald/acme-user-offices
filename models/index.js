@@ -5,6 +5,8 @@ const User = require('./User');
 const Office = require('./Office');
 
 // associations
+User.belongsTo(Office);
+Office.hasMany(User);
 
 // sync
 const sync = () => {
