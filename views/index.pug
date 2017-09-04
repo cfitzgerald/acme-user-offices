@@ -18,7 +18,7 @@ block content
       div#officeForm.well
         div.form-group
           //- label Name
-          input.form-control(name='name' placeholder='Enter a location...' autocomplete='off')
+          input#pac-input.form-control(name='name' placeholder='Enter a location...' type='text' autocomplete='off')
 
   div.row
 
@@ -29,8 +29,9 @@ block content
           each user in users
             li.list-group-item #[h4 #{ user.name }]
               select.form-control
-                option(value='0' selected='true') -- nothing --
-                option(value='1') Test
+                option(value='0' selected='true') -- Select --
+                each office in offices
+                  option(value=office.id) #{ office.address }
               div.form-group
                 button.btn.btn-warning.btn-sm Remove User
 
@@ -42,9 +43,12 @@ block content
             li.list-group-item #[h4 #{ office.address }]
               div.office-location
                 h5 lat: #{ office.lat }
-                h5 long: #{ office.long }
+                h5 lng: #{ office.lng }
               div.office-users
-                label.label.label-default User
+                if office.users.length === 1
+                  label.label.label-default #{ office.users.length } User
+                else
+                  label.label.label-default #{ office.users.length } Users
               div.form-group
                 button.btn.btn-warning.btn-sm.pull-right Delete Office
                 br

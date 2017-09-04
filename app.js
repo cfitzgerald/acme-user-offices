@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
-const override = require('method-override');
 const morgan = require('morgan');
+const override = require('method-override');
 const path = require('path');
 const pug = require('pug');
 
@@ -12,7 +12,9 @@ const { User, Office } = require('./models').models;
 
 // middleware
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
-app.use(express.static('public')); // serve up the static files in /public
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// app.use(express.static('public')); // serve up the static files in /public
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(override('_method')); // use the _method param on the url
 app.use(morgan('dev'));
@@ -23,10 +25,21 @@ app.set('view engine', 'pug'); // set 'view engine' to specify pug
 // app.disable('view cache'); // disable view caching...
 
 // set locals
+let config = process.env;
+try {
+  config = require('./env.json');
+}
+catch (ex) {}
+
+app.use( (req, res, next) => {
+  res.locals.GOOGLE_API_KEY = config.GOOGLE_API_KEY;
+  next();
+});
+
 app.use( (req, res, next) => {
   return Promise.all([
     User.findAll(),
-    Office.findAll(),
+    Office.findAll({ include: [{ model: User }] }),
   ])
     .then(([ users, offices ]) => {
       res.locals.users = users;

@@ -11,7 +11,7 @@ html(lang='en')
     <!-- Bootstrap core CSS -->
     link(href='/vendor/bootstrap/dist/css/bootstrap.css' rel='stylesheet')
     <!-- Custom styles -->
-    link(href='/stylesheets/style.css' rel='stylesheet')
+    link(href='/public/stylesheets/style.css' rel='stylesheet')
     <!-- Google Fonts -->
     link(href='https://fonts.googleapis.com/css?family=Roboto:400,700|Zilla+Slab:300,400,700' rel='stylesheet')
 
@@ -21,3 +21,12 @@ html(lang='en')
           h1 Acme User Offices
 
         block content
+
+        //- scripts here
+        script(src='/vendor/jquery/dist/jquery.js')
+        script(src='/public/js/app.js')
+        script(src='/public/js/OfficeForm.js')
+        script(src='/public/js/OfficesList.js')
+        script(src='/public/js/UserForm.js')
+        script(src='/public/js/UsersList.js')
+        script(src='https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_API_KEY + '&libraries=places')

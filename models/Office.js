@@ -8,7 +8,7 @@ const Office = db.define('office', {
   lat: {
     type: Sequelize.FLOAT,
   },
-  long: {
+  lng: {
     type: Sequelize.FLOAT,
   },
 });
