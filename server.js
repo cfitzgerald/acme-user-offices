@@ -2,7 +2,7 @@ const app = require('./app');
 const port = process.env.PORT || 3000;
 
 // db
-const models = require('./models');
+const models = require('./db');
 
 // sync, seed, and listen
 models.sync()

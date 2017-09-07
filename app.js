@@ -8,7 +8,7 @@ const pug = require('pug');
 const app = express();
 
 // models
-const { User, Office } = require('./models').models;
+const { User, Office } = require('./db').models;
 
 // middleware
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
